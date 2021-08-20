@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   windows: circleci/windows@2.2.0
+  docker: circleci/docker@1.6.0
 
 jobs:
   test:
@@ -44,3 +45,9 @@ workflows:
       - build:
           requires:
             - test
+  deploy:
+    jobs:
+        - docker/publish:
+            docker-password: PASSWORD 
+            docker-username: USERNAME 
+            image: first-microservice 
